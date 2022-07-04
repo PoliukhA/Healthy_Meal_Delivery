@@ -1,0 +1,342 @@
+@media (max-width: 1200px) {
+    .container {
+        width: 950px;
+    }
+    .header__left-block {
+        min-width: 470px;
+    }
+    .tabcontainer {
+        width: 950px;
+    }
+    .preview__life {
+        font-size: 18px;
+        margin-left: 0;
+    }
+    .tabcontent__descr {
+        font-size: 20px;
+        height: auto;
+        padding: 40px;
+    }
+    .offer {
+        &__advantages-text {
+            font-size: 17px;
+        }
+        &__slider {
+            width: 560px;
+        }
+    }
+    .menu {
+        &__item {
+            width: 300px;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        width: 900px;
+    }
+    .tabcontainer {
+        width: 900px;
+    }
+    .offer {
+        padding-bottom: 75px;
+        .bgc-green {
+            width: 100%;
+            height: 100%;
+        }
+        &__text {
+            width: 550px;
+        }
+        &__slider {
+            width: 500px;
+        }
+    }
+    .preview__life {
+        width: 270px;
+    }
+    .menu {
+        &__item {
+            width: 285px;
+            font-size: 15px;
+        }
+        &__field {
+            margin-top: 20px;
+        }
+    }
+    .footer {
+        padding: 25px 0 30px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 700px;
+    }
+    .title {
+        margin-top: 30px;
+    }
+    .header {
+        padding: 0 70px;
+    }
+    .tabcontainer {
+        width: 650px;
+    }
+    .tabcontent {
+        width: 100%;
+        &__descr {
+            font-size: 18px;
+            padding: 20px;
+            top: 240px;
+            right: auto;
+            width: 650px;
+        }
+    }
+    .preview {
+        &__life {
+            display: none;
+        }
+    }
+    .offer {
+        padding-bottom: 0px;
+        .bgc-green {
+            display: none;
+        }
+        &__slide {
+            height: 320px;
+        }
+        &__slider {
+            width: 365px;
+        }
+        &__advantages {
+            margin-top: 0;
+            width: 300px;
+        }
+        &__action {
+            display: none;
+        }
+        &__text {
+            width: 100%;
+        }
+    }
+    .menu {
+        padding-top: 15px;
+        .container {
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        &__item {
+            margin-top: 20px;
+        }
+    }
+    .btn {
+        span {
+            display: none;
+        }
+        img {
+            display: block;
+        }
+    }
+    .animation, .animation-call {
+        position: absolute;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+    .animation {
+    position: relative;
+    transition: .5s;
+    &-call {
+        animation: call .9s ease-in-out infinite;
+        }
+        &::before,
+        &::after {
+        content: '';
+        position: absolute;
+        border: 1px solid #92C64E;
+        left: -10px;
+        right: -10px;
+        top: -10px;
+        bottom: -10px;
+        border-radius: 50%;
+        animation: pulse 1.8s linear infinite;
+        opacity: 0;
+        }
+        &::after {
+        animation-delay: .5s;
+        }
+    }    
+    @keyframes call {
+        0%, 100% {
+            transform: rotate(-20deg);
+        }
+        50% {
+            transform: rotate(21deg);
+        }
+        }
+        @keyframes pulse {
+        0% {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.2);
+            opacity: 0;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 500px;
+    }
+    .title {
+        margin-top: 60px;
+    }
+    .tabcontainer {
+        width: 500px;
+    }
+    .tabcontent {
+        &__descr {
+            width: 500px;
+        }
+    }
+    .header {
+        position: fixed;
+		top: 0;
+		left: -100%;
+		width: 50%;
+		height: 100vh;
+		padding: 20px 15px;
+		background-color: rgba(0,0,0, .8);
+		transition: 0.6s all;
+        z-index: 5;
+        &__links {
+            flex-direction: column;
+        }
+        &__link {
+            color: #fff;
+            margin: 0 auto;
+            margin-bottom: 20%;
+            &:last-child {
+                margin-right: auto;
+            }
+        }
+        &__left-block {
+            flex-direction: column;
+            align-items: center;
+            row-gap: 20vh;
+            min-width: 100%;
+        }
+        &__right-block {
+            display: none;
+        }
+        &_active {
+            left: 0;
+        }
+    }
+    .hamburger {
+        display: block;
+        margin-left: 90%;
+        margin-top: 5%;
+        transform: translateY(-50%);
+        width: 26px;
+        height: 12px;
+        &_active {
+            span {
+                margin-bottom: -2px;
+                &:nth-child(1) {
+                    transform: translateY(8px) rotate(-45deg);
+                }
+                &:nth-child(2) {
+                    display: none;
+                }
+                &:nth-child(3) {
+                    transform: translateY(3px) rotate(45deg);
+                }
+            }
+        }
+        span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: #333;
+            margin-bottom: 4px;
+            transition: 0.5s all;
+        }
+    }
+    .offer {
+        .container {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        &__advantages {
+            width: 500px;
+            h2 {
+                &:first-child {
+                    margin-top: 50px;
+                }
+            }
+        }
+        &__slider {
+            margin-top: 25px;
+            width: 450px;
+        }
+    }
+    .menu {
+        &__item {
+            width: 500px;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        width: 100%;
+        padding: 0 10px;
+        text-align: justify;
+    }
+    .tabcontainer {
+        width: 310px;
+    }
+    .tabheader {
+        width: 100%;
+    }
+    .tabcontent {
+        &__descr {
+            width: 310px;
+            font-size: 14px;
+            max-height: 225px;
+            overflow-y: scroll;
+        }
+    }
+    .preview {
+        padding-top: 40px;
+    }
+    .offer {
+        &__slider {
+            align-items: center;
+            &-wrapper {
+                width: 80%;
+            }
+        }
+        &__slide {
+            height: 220px;
+        }
+        &__advantages {
+            width: 100%;
+        }
+    }
+    .menu__item {
+        width: 100%;
+    }
+    .footer .subtitle {
+        font-size: 14px;
+    }
+    .footer .link {
+        font-size: 13px;
+    }
+}

@@ -1,0 +1,40 @@
+.footer {
+    min-height: 180px;
+    background-color: $dark;
+    padding: 45px 0 40px 0;
+    color: #fff;
+    .container {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .subtitle {
+        font-size: 20px;
+    }
+    .link {
+        display: block;
+/*         margin-top: 15px; */
+        font-size: 16px;
+        color: #fff;
+        &-fb {
+            &::before {
+                content: url('../../../icons/facebook.svg');
+                position: relative;
+                top: 12px;
+            }
+        }
+        &-insta {
+            &::before {
+                content: url('../../../icons/instagram.svg');
+                position: relative;
+                top: 12px;
+            }
+        }
+        &-call {
+            margin-top: 20px;
+        }
+    }
+    .call {
+        text-align: right;
+    }
+}
