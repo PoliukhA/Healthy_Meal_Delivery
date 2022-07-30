@@ -78,15 +78,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const message = {
         loading: 'icons/spinner.svg',
-        success: 'Thank you! We will get back to you soon',
-        error: 'Oops! Something went wrong.'
+        success: {
+            text: 'Thank you! We will get back to you soon',
+            img: 'icons/checked.png'},
+        error: {
+            text: 'Oops! Something went wrong.',
+            img: 'icons/error.png'
+        }
     };
 
     forms.forEach(item => {
-        postData(item);
+        bindPostData(item);
     });
 
-    function postData(form) {
+    const postData = async (url, data) => {
+        const res = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: data
+        });
+
+        return await res.json();
+    };
+
+    function bindPostData(form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -95,35 +112,25 @@ document.addEventListener('DOMContentLoaded', function() {
             statusMessage.src = message.loading;
             form.append(statusMessage);
 
-            const request = new XMLHttpRequest();
-            request.open('POST', 'server.php');
-
-            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
             const formData = new FormData(form);
 
-            const object = {};
-            formData.forEach(function(value, key){
-                object[key] = value;
-            });
-            const json = JSON.stringify(object);
+            const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-            request.send(json);
-
-            request.addEventListener('load', () => {
-                if (request.status === 200) {
-                    console.log(request.response);
+            postData('http://localhost:3000/requests', json)
+            .then(data => {
+                    console.log(data);
                     showThanksModal(message.success);
-                    form.reset();
                     statusMessage.remove();
-                } else {
+            }).catch(() => {
                     showThanksModal(message.error);
-                }
+            }).finally(() => {
+                form.reset();
             });
         });
     }
 
-    function showThanksModal() {
-        const prevModalDialog = documunt.querySelector(".modal__dialog");
+    function showThanksModal(message) {
+        const prevModalDialog = document.querySelector(".modal__dialog");
 
         prevModalDialog.classList.add('hide');
         openModal();
@@ -133,7 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
         thanksModal.innerHTML = `
             <div class="modal__content">
                 <div class="modal__close" data-close>&times;</div>
-                <div class="modal__title">${message}</div>
+                <img class ="modal__img" src="${message.img}" alt="${message.text}">
+                <div class="modal__title">${message.text}</div>
             </div>
         `;
 
@@ -144,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
             prevModalDialog.classList.add('show');
             prevModalDialog.classList.remove('hide');
             closeModal();
-        }, 4000);
+        }, 500000);
     }
 
     //Discount
@@ -238,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
           this.parent = document.querySelector(parent);
         }
 
-        display() {
+        render() {
             const element = document.createElement('div');
 
             element.innerHTML = `
@@ -257,30 +265,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    new MenuCard(
-        "img/tabs/vegy.jpg",
-        "vegy",
-        'Fitness Menu',
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-        19,
-        ".menu .container"
-    ).display();
+    const getData = async (url) => {
+        const res = await fetch(url)
 
-    new MenuCard(
-        "img/tabs/premium.jpg",
-        "premium",
-        'Premium Menu',
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-       25,
-        ".menu .container"
-    ).display();
+        if (!res.ok) {
+            throw new Error(`Couldn't fetch ${url}, status: ${res.status}`);
+        }
 
-    new MenuCard(
-        "img/tabs/balanced.jpg",
-        "balanced",
-        'Balanced Menu',
-        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-        10,
-        ".menu .container"
-    ).display();
+        return await res.json();
+    };
+
+    getData('http://localhost:3000/menu')
+        .then(data => {
+            data.forEach(({img, altimg, title, descr, price}) => { //деструктуризация
+                new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+            })
+        });
 });

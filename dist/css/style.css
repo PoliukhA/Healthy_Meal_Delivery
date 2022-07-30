@@ -704,6 +704,11 @@ a {
   max-width: 500px;
   margin: 40px auto;
 }
+.modal__img {
+  height: 150px;
+  margin: 35px auto;
+  display: block;
+}
 .modal__content {
   position: relative;
   width: 100%;
