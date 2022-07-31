@@ -81,6 +81,14 @@
             font-weight: bold;
             color: rgba(0,0,0,1);
         }
+        &-container {
+            overflow: hidden;
+        }
+        &-inner {
+            display: flex;
+            transition: 0.5s all;
+            overflow: hidden;
+        }
     }
     &__slide {
         width: 100%;

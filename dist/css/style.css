@@ -329,6 +329,14 @@ a {
   font-weight: bold;
   color: rgb(0, 0, 0);
 }
+.offer__slider-container {
+  overflow: hidden;
+}
+.offer__slider-inner {
+  display: flex;
+  transition: 0.5s all;
+  overflow: hidden;
+}
 .offer__slide {
   width: 100%;
   height: 390px;

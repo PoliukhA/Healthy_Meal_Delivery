@@ -189,32 +189,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const slides = document.querySelectorAll('.offer__slide'),
           prev = document.querySelector('.offer__slider-prev'),
-          next = document.querySelector('.offer__slider-next');
+          next = document.querySelector('.offer__slider-next'),
+          slidesWrapper = document.querySelector('.offer__slider-container'),
+          slidesField = document.querySelector('.offer__slider-inner'),
+          width = window.getComputedStyle(slidesWrapper).width;
 
-    let slideIndex = 1;
+    let slideIndex = 0;
+    let offset = 0;
 
-    function showSlides(n) {
-        if (n > slides.length) {
-            slideIndex = 1;
-        }
-        if (n < 1) {
-            slideIndex = slides.length;
-        }
+    slidesField.style.width = 100 * slides.length + '%';
 
-        slides.forEach((item) => item.style.display = 'none');
-
-        slides[slideIndex - 1].style.display = 'block';
-    }
+    slides.forEach(slide => {
+        slide.style.width = width;
+    });
 
     next.addEventListener('click', () => {
-        showSlides(slideIndex += 1);
+        if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+            offset = 0;
+        } else {
+            offset += +width.slice(0, width.length - 2);
+        }
+        
+        slidesField.style.transform = `translateX(-${offset}px)`;
     });
 
     prev.addEventListener('click', () => {
-        showSlides(slideIndex -= 1);
+        if (offset == 0) {
+            offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+        } else {
+            offset -= +width.slice(0, width.length - 2);
+        }
+        
+        slidesField.style.transform = `translateX(-${offset}px)`;
     });
+    
+    // showSlides(slideIndex);
 
-    showSlides();
+    // function showSlides(n) {
+    //     if (n > slides.length) {
+    //         slideIndex = 1;
+    //     }
+    //     if (n < 1) {
+    //         slideIndex = slides.length;
+    //     }
+
+    //     slides.forEach((item) => item.style.display = 'none');
+
+    //     slides[slideIndex - 1].style.display = 'block';
+    // }
+
+    // next.addEventListener('click', () => {
+    //     showSlides(slideIndex += 1);
+    // });
+
+    // prev.addEventListener('click', () => {
+    //     showSlides(slideIndex -= 1);
+    // });
 
     // Menu hamburger
 
