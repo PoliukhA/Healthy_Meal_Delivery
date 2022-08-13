@@ -293,6 +293,7 @@ a {
   line-height: 21px;
 }
 .offer__slider {
+  position: relative;
   width: 650px;
   margin-top: 50px;
   display: flex;
@@ -345,6 +346,124 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.offer__indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+}
+.offer__indicators-dot {
+  box-sizing: content-box;
+  flex: 0 1 auto;
+  width: 30px;
+  height: 6px;
+  margin-right: 3px;
+  margin-left: 3px;
+  cursor: pointer;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
+}
+
+.calculating {
+  padding: 50px 0;
+}
+.calculating .title {
+  text-align: center;
+}
+.calculating__field {
+  width: 100%;
+  margin-top: 50px;
+  background: rgba(146, 242, 255, 0.15);
+  padding: 30px 0 40px 0;
+}
+.calculating__subtitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+.calculating__subtitle:first-child {
+  margin-top: 0;
+}
+.calculating #gender:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: url("../icons/switch.svg") center center/cover no-repeat;
+}
+.calculating__choose {
+  position: relative;
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+}
+.calculating__choose-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 50px;
+  padding: 0 10px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  border: none;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s all;
+}
+.calculating__choose-item_active {
+  color: #fff;
+  background-color: #92C64E;
+}
+.calculating__choose_medium {
+  width: 743px;
+  justify-content: space-between;
+  margin: 30px auto 0 auto;
+}
+.calculating__choose_big {
+  width: 930px;
+  justify-content: space-between;
+  margin: 30px auto 0 auto;
+}
+.calculating__choose_big .calculating__choose-item {
+  width: 200px;
+}
+.calculating__divider {
+  width: 490px;
+  height: 1px;
+  margin: 40px auto;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.calculating__total {
+  width: 490px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.calculating__result {
+  font-size: 18px;
+  font-weight: bold;
+}
+.calculating__result span {
+  font-size: 42px;
 }
 
 .footer {

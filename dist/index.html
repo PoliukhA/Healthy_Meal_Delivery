@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="offer__slider">
-                    
+                <ol class="offer__indicators"></ol>
                 <div class="offer__slider-wrapper">
                     <div class="offer__slider-prev"><!-- &#10094; --> <img src="icons/left.svg" alt="Left arrow"> </div>
                     <div class="offer__slider-next"><!-- &#10095; --> <img src="icons/right.svg" alt="Right arrow"></div>
@@ -119,6 +119,52 @@
                                 <img src="img/slider/paprika.jpg" alt="paprika">
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="calculating">
+        <div class="container">
+            <h2 class="title">Meal Calorie Calculator
+            </h2>
+            <div class="calculating__field">
+                <div class="calculating__subtitle">
+                    Gender
+                </div>
+                <div class="calculating__choose" id="gender">
+                    <div id="female" class="calculating__choose-item calculating__choose-item_active">Female</div>
+                    <div id="male" class="calculating__choose-item">Male</div>
+                </div>
+
+                <div class="calculating__subtitle">
+                    Basic Information
+                </div>
+                <div class="calculating__choose calculating__choose_medium">
+                    <input type="text" id="height" placeholder="Height" class="calculating__choose-item">
+                    <input type="text" id="weight" placeholder="Weight"  class="calculating__choose-item">
+                    <input type="text" id="age" placeholder="Age" class="calculating__choose-item">
+                </div>
+
+                <div class="calculating__subtitle">
+                    Exercise Level
+                </div>
+                <div class="calculating__choose calculating__choose_big">
+                    <div data-ratio="1.2" id="low" class="calculating__choose-item">Almost not at all</div>
+                    <div data-ratio="1.375" id="small"  class="calculating__choose-item calculating__choose-item_active">1-3 days</div>
+                    <div data-ratio="1.55" id="medium" class="calculating__choose-item">3-4 days</div>
+                    <div data-ratio="1.725" id="high" class="calculating__choose-item">Every day intensive workout</div>
+                </div>
+
+                <div class="calculating__divider"></div>
+
+                <div class="calculating__total">
+                    <div class="calculating__subtitle">
+                        Recommended Daily Calorie Intake:
+                    </div>
+                    <div class="calculating__result">
+                        <span>2700</span> kcal
                     </div>
                 </div>
             </div>
